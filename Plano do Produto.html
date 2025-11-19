@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Ferramentas para Desenvolvimento de Produto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            overflow-x: hidden;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
+            position: relative;
+            max-width: 100vw;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        .container > * {
+            max-width: 100%;
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+        h3 {
+            margin-top: 0;
+        }
+        h4 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: inherit;
+        }
+        .subtitle {
+            text-align: center;
+            color: #718096;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            table-layout: fixed;
+        }
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+            overflow: hidden;
+            word-wrap: break-word;
+        }
+        tr:hover {
+            background-color: #f7fafc;
+        }
+        .step-cell {
+            font-weight: 600;
+            color: #2d3748;
+            min-width: 180px;
+            overflow: hidden;
+        }
+        .tool-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            margin: 3px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .figma { background-color: #f093fb; color: white; }
+        .figjam { background-color: #4facfe; color: white; }
+        .ai { background-color: #43e97b; color: white; }
+        .jira { background-color: #0052cc; color: white; }
+        .confluence { background-color: #0052cc; color: white; }
+        .notion { background-color: #000000; color: white; }
+        .other { background-color: #f6ad55; color: white; }
+        .row-1 { background-color: #fff5f5; }
+        .row-2 { background-color: #fffaf0; }
+        .row-3 { background-color: #fffff0; }
+        .row-4 { background-color: #f0fff4; }
+        .row-5 { background-color: #f0ffff; }
+        .row-6 { background-color: #f0f9ff; }
+        .row-7 { background-color: #faf5ff; }
+        .row-8 { background-color: #fff5f7; }
+        .row-9 { background-color: #fef5e7; }
+        .row-10 { background-color: #f0fdf4; }
+        .section-header {
+            padding: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            color: white;
+            margin-top: 40px;
+        }
+        .section-header-alt {
+            padding: 25px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 10px;
+            color: white;
+            margin-top: 40px;
+        }
+        .section-header-green {
+            padding: 25px;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            border-radius: 10px;
+            color: white;
+            margin-top: 40px;
+        }
+        .alert-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.8;
+        }
+        .alert-warning {
+            background: #fff3cd;
+            border-left: 4px solid #f5576c;
+            color: #856404;
+        }
+        .alert-info {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            color: #2d3748;
+        }
+        .alert-success {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            color: #2e7d32;
+        }
+        .alert-danger {
+            background: #ffebee;
+            border-left: 4px solid #e53935;
+            color: #c62828;
+        }
+        .alert-blue {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            color: #1565c0;
+        }
+        .alert-pink {
+            background: #fce4ec;
+            border-left: 4px solid #e91e63;
+            color: #880e4f;
+        }
+        .alert-teal {
+            background: #e0f2f1;
+            border-left: 4px solid #009688;
+            color: #004d40;
+        }
+        ul, ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        small {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.85em;
+        }
+        .highlight-box {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Guia de Ferramentas para Desenvolvimento de Produto</h1>
+        <p class="subtitle">Da Ideia ao Lançamento - Seu Kit de Ferramentas Completo</p>
+        
+        <div class="alert-box alert-danger">
+            <h3>⚠️ IMPORTANTE: Comece pelos Aspectos Legais!</h3>
+            <p>Este guia começa com os requisitos legais e contábeis porque você DEVE cuidar deles ANTES de desenvolver o produto. Role para baixo para ver as ferramentas de desenvolvimento.</p>
+        </div>
+        
+        <div class="section-header">
+            <h2>⚖️ Trilha Jurídica & Contábil (Foco Brasil)</h2>
+            <p style="font-size: 16px; margin-bottom: 0;">Estas atividades correm <strong>em paralelo</strong> ao desenvolvimento do produto - comece cedo e cuide delas junto com o trabalho do produto!</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Etapa Jurídica & Contábil</th>
+                    <th>Quando Fazer</th>
+                    <th>Ferramentas e Recursos Brasil</th>
+                    <th>Alternativas Internacionais</th>
+                    <th>Ferramentas Documentação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row-1">
+                    <td class="step-cell"><strong>Estrutura e Registro Empresa</strong><br><small>Escolher tipo (MEI - Microempreendedor Individual, LTDA - Sociedade Limitada, SA - Sociedade Anônima) e registrar com CNPJ (Cadastro Nacional de Pessoa Jurídica)</small></td>
+                    <td><strong>Fase Ideação</strong><br>Antes de gastar dinheiro significativo</td>
+                    <td>
+                        <span class="tool-tag other">✓ Contabilizei</span>
+                        <span class="tool-tag other">Qipu</span>
+                        <span class="tool-tag other">Conta Azul</span>
+                        <span class="tool-tag other">Receita Federal (gov.br)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">LegalZoom</span>
+                        <span class="tool-tag other">Stripe Atlas</span>
+                        <span class="tool-tag ai">ChatGPT (pesquisa)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">✓ Hub Documentos Legais</span>
+                        <span class="tool-tag confluence">Página Info Empresa</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-2">
+                    <td class="step-cell"><strong>Acordo de Sócios/Fundadores</strong><br><small>Contrato Social - definir equity, papéis, cotas, propriedade IP (Propriedade Intelectual)</small></td>
+                    <td><strong>Antes do Desenvolvimento</strong><br>Crítico fazer cedo!</td>
+                    <td>
+                        <span class="tool-tag other">✓ Contrato Simples</span>
+                        <span class="tool-tag other">Jurisfy</span>
+                        <span class="tool-tag other">Advogado</span>
+                        <span class="tool-tag other">Junta Comercial</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">Clerky</span>
+                        <span class="tool-tag other">Rocket Lawyer</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">✓ Acordo Fundadores</span>
+                        <span class="tool-tag confluence">Contratos Legais</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-3">
+                    <td class="step-cell"><strong>Configuração Sistema Contábil</strong><br><small>Conta bancária, contabilidade, controle despesas, sistema NFe (Nota Fiscal Eletrônica)</small></td>
+                    <td><strong>Antes de Gastar Dinheiro</strong><br>Configure quando começar a ter custos</td>
+                    <td>
+                        <span class="tool-tag other">✓ Conta Azul</span>
+                        <span class="tool-tag other">Omie</span>
+                        <span class="tool-tag other">Nibo</span>
+                        <span class="tool-tag other">Bling</span>
+                        <span class="tool-tag other">Nubank/Inter (banco)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">QuickBooks</span>
+                        <span class="tool-tag other">Xero</span>
+                        <span class="tool-tag other">Wave</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Dashboard Financeiro</span>
+                        <span class="tool-tag confluence">Procedimentos Contábeis</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-4">
+                    <td class="step-cell"><strong>Registro Fiscal</strong><br><small>CNPJ (Cadastro Nacional de Pessoa Jurídica), Inscrição Estadual, Municipal, regime tributário (Simples Nacional, Lucro Presumido)</small></td>
+                    <td><strong>Após Registro Empresa</strong><br>Imediatamente após formar empresa</td>
+                    <td>
+                        <span class="tool-tag other">✓ Receita Federal</span>
+                        <span class="tool-tag other">SEFAZ (estadual)</span>
+                        <span class="tool-tag other">Prefeitura (municipal)</span>
+                        <span class="tool-tag other">Contabilizei</span>
+                        <span class="tool-tag other">eCAC</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">IRS.gov (EUA)</span>
+                        <span class="tool-tag other">Avalara</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Documentos Fiscais</span>
+                        <span class="tool-tag confluence">Info Fiscal</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-5">
+                    <td class="step-cell"><strong>Proteção Propriedade Intelectual</strong><br><small>Marca no INPI (Instituto Nacional da Propriedade Industrial), direitos autorais, patentes se necessário</small></td>
+                    <td><strong>Durante Design/Desenvolvimento</strong><br>Antes do lançamento público</td>
+                    <td>
+                        <span class="tool-tag other">✓ INPI (gov.br)</span>
+                        <span class="tool-tag other">Marcas123</span>
+                        <span class="tool-tag other">RegistroMarca.com</span>
+                        <span class="tool-tag other">Advogado PI</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">USPTO.gov</span>
+                        <span class="tool-tag other">LegalZoom</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Portfólio PI</span>
+                        <span class="tool-tag confluence">Documentação PI</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-6">
+                    <td class="step-cell"><strong>Termos de Serviço & Política Privacidade</strong><br><small>Termos de Uso & Política de Privacidade (conformidade LGPD - Lei Geral de Proteção de Dados)</small></td>
+                    <td><strong>Antes do Lançamento</strong><br>Deve estar ativo quando usuários se registrarem</td>
+                    <td>
+                        <span class="tool-tag other">✓ Modelos Jusbrasil</span>
+                        <span class="tool-tag other">iubenda (LGPD)</span>
+                        <span class="tool-tag other">Proteção de Dados BR</span>
+                        <span class="tool-tag ai">ChatGPT (rascunho PT-BR)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">Termly</span>
+                        <span class="tool-tag other">iubenda</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Páginas Legais</span>
+                        <span class="tool-tag confluence">Docs Legais</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-7">
+                    <td class="step-cell"><strong>Seguro</strong><br><small>Seguro empresarial, RC (Responsabilidade Civil), E&O (Erros e Omissões), cyber (segurança cibernética)</small></td>
+                    <td><strong>Antes do Lançamento</strong><br>Especialmente se manipular dados usuário</td>
+                    <td>
+                        <span class="tool-tag other">✓ Porto Seguro</span>
+                        <span class="tool-tag other">Bradesco Seguros</span>
+                        <span class="tool-tag other">Zurich</span>
+                        <span class="tool-tag other">Liberty Seguros</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">Hiscox</span>
+                        <span class="tool-tag other">Next Insurance</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Apólices Seguro</span>
+                        <span class="tool-tag confluence">Gestão Risco</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-8">
+                    <td class="step-cell"><strong>Conformidade & Regulamentações</strong><br><small>LGPD (Lei Geral de Proteção de Dados) - dados saúde sensíveis, requisitos CFP (Conselho Federal de Psicologia), sigilo médico, equivalente HIPAA (Health Insurance Portability and Accountability Act)</small></td>
+                    <td><strong>Durante Desenvolvimento</strong><br>Construir conformidade no produto desde o dia 1</td>
+                    <td>
+                        <span class="tool-tag other">✓ Diretrizes ANPD</span>
+                        <span class="tool-tag other">CFP (Conselho Federal Psicologia)</span>
+                        <span class="tool-tag other">Resolução CFP 011/2018</span>
+                        <span class="tool-tag other">iubenda (LGPD Saúde)</span>
+                        <span class="tool-tag ai">ChatGPT (pesquisa LGPD)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">OneTrust</span>
+                        <span class="tool-tag other">HIPAA compliance (ref. EUA)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">✓ Checklist Conformidade</span>
+                        <span class="tool-tag confluence">Docs Conformidade</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-9">
+                    <td class="step-cell"><strong>Contratos & Acordos</strong><br><small>Contratos, NDAs (Non-Disclosure Agreements - Acordos de Confidencialidade), acordos clientes, contratos fornecedores</small></td>
+                    <td><strong>Contínuo</strong><br>Conforme necessário</td>
+                    <td>
+                        <span class="tool-tag other">✓ Clicksign</span>
+                        <span class="tool-tag other">DocuSign Brasil</span>
+                        <span class="tool-tag other">Contraktor</span>
+                        <span class="tool-tag other">D4Sign</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">DocuSign</span>
+                        <span class="tool-tag other">PandaDoc</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">✓ Base Contratos</span>
+                        <span class="tool-tag confluence">Templates Contratos</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-10">
+                    <td class="step-cell"><strong>Planejamento & Relatórios Financeiros</strong><br><small>Orçamento, DRE (Demonstrativo de Resultado do Exercício), balanço, fluxo caixa, SPED (Sistema Público de Escrituração Digital), relatórios investidores</small></td>
+                    <td><strong>Contínuo</strong><br>Revisões mensais/trimestrais</td>
+                    <td>
+                        <span class="tool-tag other">✓ Conta Azul</span>
+                        <span class="tool-tag other">Omie</span>
+                        <span class="tool-tag other">Nibo</span>
+                        <span class="tool-tag other">ContaAzul Pro</span>
+                        <span class="tool-tag ai">ChatGPT (modelagem)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">QuickBooks</span>
+                        <span class="tool-tag other">Google Sheets</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">✓ Dashboard Financeiro</span>
+                        <span class="tool-tag confluence">Relatórios Financeiros</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="alert-box alert-warning">
+            <h3>⚠️ Cronograma Crítico Brasil + Dados Saúde:</h3>
+            <p><strong>Fazer ANTES de começar a construir:</strong></p>
+            <ul>
+                <li>✓ <strong>Contratar advogado tech saúde e DPO (Data Protection Officer - Encarregado de Proteção de Dados) - OBRIGATÓRIO para dados saúde</strong></li>
+                <li>✓ Completar Avaliação Impacto Processamento Dados (DPIA/RIPD - Data Protection Impact Assessment / Relatório de Impacto à Proteção de Dados)</li>
+                <li>✓ Registro empresa (CNPJ via Junta Comercial)</li>
+                <li>✓ Contrato Social - acordo sócios (SUPER IMPORTANTE!)</li>
+                <li>✓ Conta bancária & escolher sistema contábil (Conta Azul, Omie ou Nibo)</li>
+                <li>✓ Escolher regime tributário (Simples Nacional recomendado para startups)</li>
+                <li>✓ Estudar Resolução CFP 011/2018 minuciosamente</li>
+            </ul>
+            <p><strong>Fazer DURANTE desenvolvimento:</strong></p>
+            <ul>
+                <li><strong>Implementar segurança desde dia 1: E2EE (End-to-End Encryption - Criptografia Ponta a Ponta), criptografia dados, controles acesso, logs auditoria</strong></li>
+                <li>Construir conformidade LGPD na arquitetura produto (não deixar por último!)</li>
+                <li>Registro marca no INPI (leva 6-12 meses)</li>
+                <li>Rascunhar todos docs legais: TCLE (Termo de Consentimento Livre e Esclarecido), Termos de Uso, Política Privacidade (advogado revisar)</li>
+                <li>Configurar sistema NFe (Nota Fiscal Eletrônica)</li>
+                <li>Documentar todos fluxos dados e atividades processamento (ROT - Registro de Operações de Tratamento)</li>
+                <li>Escolher infraestrutura compatível saúde (AWS Health, Azure Health, ou GCP Healthcare - Google Cloud Platform Healthcare)</li>
+            </ul>
+            <p><strong>Fazer ANTES do lançamento:</strong></p>
+            <ul>
+                <li><strong>Auditoria segurança & teste penetração por terceiros (OBRIGATÓRIO)</strong></li>
+                <li><strong>Aprovação DPO sobre conformidade</strong></li>
+                <li><strong>Revisão final advogado de todos documentos</strong></li>
+                <li>Termos Uso & Política Privacidade ativos no site (português)</li>
+                <li>Conformidade LGPD verificada (consentimento cookies, acordos processamento dados, TCLE)</li>
+                <li>Plano resposta incidentes documentado e testado</li>
+                <li>Seguro ativo (seguro empresarial + cyber)</li>
+                <li>Registros fiscais completos (Municipal & Estadual se necessário)</li>
+                <li>Gateway pagamento configurado (Mercado Pago, PagSeguro, Stripe Brasil)</li>
+                <li>Verificar se registro E-Psi necessário com CFP</li>
+            </ul>
+        </div>
+
+        <div class="alert-box alert-success">
+            <h3>🇧🇷 Dicas Específicas Brasil:</h3>
+            <ul>
+                <li><strong>MEI vs LTDA:</strong> MEI é mais simples mas tem limite receita (R$81k/ano). LTDA é melhor para crescimento e parcerias.</li>
+                <li><strong>Simples Nacional:</strong> Regime tributário simplificado - altamente recomendado para startups (até R$4,8M receita).</li>
+                <li><strong>LGPD:</strong> Equivalente brasileiro ao GDPR - obrigatório para qualquer negócio que manipula dados pessoais. Comece conforme desde dia 1.</li>
+                <li><strong>NFe:</strong> Notas fiscais eletrônicas são obrigatórias. Seu software contábil (Conta Azul/Omie) cuida disso automaticamente.</li>
+                <li><strong>Contador:</strong> Altamente recomendado contratar um - impostos brasileiros são complexos. Serviços como Contabilizei oferecem pacotes mensais acessíveis.</li>
+                <li><strong>Processamento Pagamentos:</strong> Mercado Pago e PagSeguro são mais populares no Brasil. Stripe Brasil também disponível.</li>
+                <li><strong>Assinaturas Digitais:</strong> Clicksign e D4Sign são amplamente usados e legalmente válidos no Brasil (certificados ICP-Brasil).</li>
+            </ul>
+        </div>
+
+        <div class="alert-box alert-danger">
+            <h3>🏥 CRÍTICO: Conformidade Dados Saúde - App Saúde Feminina</h3>
+            <p style="font-weight: bold; font-size: 16px;">Trabalhar com dados de saúde feminina (ciclo menstrual, sintomas) significa manipular DADOS PESSOAIS SENSÍVEIS sob LGPD. Este é o mais alto nível de proteção de dados e tem penalidades severas por não conformidade.</p>
+            
+            <h4>📋 Requisitos Legais Obrigatórios:</h4>
+            <ul>
+                <li><strong>LGPD Art. 11 (Dados Sensíveis):</strong> Dados saúde (ciclo menstrual, sintomas físicos/emocionais) requerem consentimento EXPLÍCITO e salvaguardas especiais. Penalidades mais altas por violações.</li>
+                <li><strong>Disclaimer Médico:</strong> DEVE declarar claramente que o app NÃO substitui consulta médica. Não faz diagnósticos.</li>
+                <li><strong>Não é Dispositivo Médico:</strong> Se não diagnostica ou trata doenças, não precisa registro ANVISA. MAS precisa disclaimer claro.</li>
+                <li><strong>Dados Menstruação = Dados Saúde Sensíveis:</strong> LGPD considera informações sobre ciclo menstrual como dados sensíveis de saúde.</li>
+                <li><strong>Sem CFP ou CRM:</strong> Como não é terapia ou tratamento médico, não precisa registro conselhos profissionais.</li>
+            </ul>
+
+            <h4>🔒 Requisitos Técnicos Segurança:</h4>
+            <ul>
+                <li><strong>Criptografia Dados:</strong> Dados saúde DEVEM ser criptografados em repouso. Use AES-256 ou equivalente.</li>
+                <li><strong>Transmissão Segura:</strong> HTTPS obrigatório. TLS 1.2+ para todas comunicações.</li>
+                <li><strong>Controles Acesso:</strong> Autenticação forte. 2FA recomendado para contas usuário.</li>
+                <li><strong>Logs Auditoria:</strong> Rastrear acessos a dados sensíveis. Requerido para conformidade LGPD.</li>
+                <li><strong>Backup & Retenção:</strong> Backups criptografados. Definir políticas retenção claras. Usuárias podem solicitar exclusão dados (direito LGPD).</li>
+                <li><strong>Anonimização Analytics:</strong> Se usar analytics (Google Analytics, Mixpanel), dados saúde NÃO podem ser enviados sem anonimização.</li>
+                <li><strong>Sem Venda Dados:</strong> PROIBIDO vender dados saúde a terceiros. Pode compartilhar apenas com consentimento explícito para fins específicos.</li>
+            </ul>
+
+            <h4>📝 Documentação que DEVE Ter:</h4>
+            <ul>
+                <li><strong>Termo de Consentimento (LGPD):</strong> Formulário consentimento explícito detalhando: quais dados coletados (sintomas, ciclo, humor), como são usados, com quem compartilhados, quanto tempo armazenados.</li>
+                <li><strong>Política de Privacidade:</strong> OBRIGATÓRIA. Deve cobrir: dados saúde coletados, base legal processamento (consentimento), direitos usuária (acesso, exclusão, portabilidade), medidas segurança.</li>
+                <li><strong>Termos de Uso:</strong> Disclaimer médico claro: "Este app é para fins informativos e rastreamento pessoal. NÃO substitui consulta médica profissional. Em caso de sintomas graves, procure médico."</li>
+                <li><strong>Registro de Operações de Tratamento (ROT):</strong> Documentação LGPD de todas atividades processamento dados.</li>
+                <li><strong>Avaliação Impacto (DPIA/RIPD):</strong> Avaliação risco para dados sensíveis. OBRIGATÓRIA antes lançamento.</li>
+                <li><strong>Plano Resposta Incidentes:</strong> Procedimento caso violação dados (notificar ANPD em 2 dias úteis).</li>
+            </ul>
+
+            <h4>👥 Funções Requeridas (SIMPLIFICADAS):</h4>
+            <ul>
+                <li><strong>DPO (Encarregado Dados):</strong> OBRIGATÓRIO para dados sensíveis. Pode ser consultor part-time/compartilhado (mais barato).</li>
+                <li><strong>Assessoria Jurídica:</strong> Advogado especializado LGPD + health tech. Necessário para setup inicial e revisão docs.</li>
+                <li><strong>Consultor Segurança:</strong> Para implementar criptografia e boas práticas. Pode ser freelancer para projeto específico.</li>
+            </ul>
+
+            <h4>🛠️ Ferramentas Segurança Recomendadas:</h4>
+            <ul>
+                <li><strong>Backend:</strong> Supabase (tem recursos segurança built-in) + AWS para dados sensíveis (RDS encrypted, S3 encrypted)</li>
+                <li><strong>Autenticação:</strong> Supabase Auth, Auth0, ou Firebase Auth (todos têm segurança robusta)</li>
+                <li><strong>Criptografia:</strong> Built-in AWS/Supabase encryption. Não precisa ferramentas complexas adicionais</li>
+                <li><strong>Monitoring:</strong> AWS CloudWatch ou Supabase logs (suficiente para começar)</li>
+                <li><strong>Backup:</strong> Automated backups Supabase/AWS</li>
+            </ul>
+
+            <h4>⚠️ Armadilhas Comuns a EVITAR:</h4>
+            <ul>
+                <li>❌ Armazenar dados ciclo menstrual não criptografados</li>
+                <li>❌ Enviar dados saúde para Google Analytics ou Facebook Pixel (violação LGPD)</li>
+                <li>❌ Não ter disclaimer médico claro e visível</li>
+                <li>❌ Assumir que "é só um app de período" = não precisa LGPD (ERRADO - são dados sensíveis)</li>
+                <li>❌ Compartilhar dados com parceiros (anunciantes, pesquisadores) sem consentimento EXPLÍCITO</li>
+                <li>❌ Não ter processo para usuária deletar sua conta e todos dados</li>
+            </ul>
+
+            <h4>💰 Penalidades por Não Conformidade:</h4>
+            <ul>
+                <li>Multas LGPD: Até R$50 milhões ou 2% da receita empresa por violação</li>
+                <li>Remoção forçada das app stores</li>
+                <li>Responsabilidade civil: Processos de usuárias por vazamento dados</li>
+                <li>Dano reputacional irreversível</li>
+            </ul>
+
+            <h4>✅ Plano Ação Recomendado:</h4>
+            <ol style="line-height: 2;">
+                <li><strong>Semana 1-2:</strong> Contratar advogado LGPD + consultor DPO (pode ser part-time/compartilhado)</li>
+                <li><strong>Semana 2-4:</strong> Completar DPIA/RIPD básico</li>
+                <li><strong>Mês 1:</strong> Entender completamente LGPD Art. 11 (dados sensíveis)</li>
+                <li><strong>Durante Desenvolvimento:</strong> Implementar criptografia dados desde dia 1. Usar Supabase Row Level Security</li>
+                <li><strong>Antes Beta:</strong> Revisão segurança básica (pode ser consultor, não precisa auditoria completa ainda)</li>
+                <li><strong>Antes Lançamento:</strong> Todos docs legais (TCLE, Política Privacidade, Termos) revisados por advogado + aprovação DPO</li>
+                <li><strong>Pós-Lançamento:</strong> Monitoramento contínuo. Auditoria segurança anual (não trimestral como apps terapia)</li>
+            </ol>
+
+            <h4>📚 Recursos Essenciais:</h4>
+            <ul>
+                <li><strong>ANPD (Autoridade Proteção Dados):</strong> https://www.gov.br/anpd</li>
+                <li><strong>Texto Completo LGPD:</strong> Lei nº 13.709/2018 - foco no Art. 11</li>
+                <li><strong>Guia LGPD para Startups:</strong> Material gratuito ANPD</li>
+                <li><strong>Apps Referência:</strong> Clue, Flo (verificar políticas privacidade deles como exemplo)</li>
+            </ul>
+
+            <h4>🆚 Diferença vs App Psicoterapia:</h4>
+            <div class="highlight-box">
+                <p style="color: #2d3748; margin: 0;"><strong>Menos Complexo Que Psicoterapia:</strong></p>
+                <ul style="color: #4a5568; margin-top: 10px;">
+                    <li>✅ SEM registro CFP necessário</li>
+                    <li>✅ SEM E2EE obrigatório (só criptografia padrão)</li>
+                    <li>✅ SEM necessidade vídeo/comunicação healthcare-compliant</li>
+                    <li>✅ SEM requisitos sigilo profissional</li>
+                    <li>✅ Auditoria anual OK (vs trimestral)</li>
+                    <li>✅ Custos legais ~40-60% menores</li>
+                </ul>
+                <p style="color: #2d3748; margin-top: 15px;"><strong>MAS AINDA Requer:</strong></p>
+                <ul style="color: #4a5568; margin-top: 10px;">
+                    <li>⚠️ Compliance LGPD completo (dados sensíveis)</li>
+                    <li>⚠️ DPO obrigatório</li>
+                    <li>⚠️ Criptografia dados saúde</li>
+                    <li>⚠️ Disclaimer médico claro</li>
+                    <li>⚠️ Política privacidade robusta</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 20px; padding: 15px; background: white; border-radius: 5px; font-weight: bold; color: #c62828;">
+                ⚠️ IMPORTANTE: Mesmo sendo "apenas" rastreamento menstrual, você está lidando com dados SENSÍVEIS de saúde. Compliance LGPD é obrigatório e não-negociável. Mas é MUITO mais simples que app de terapia.
+            </p>
+        </div>
+
+        <div class="section-header">
+            <h2>📱 Requisitos Lançamento App Stores Mobile</h2>
+            <p style="font-size: 16px; margin-bottom: 0;">Requisitos adicionais para lançamento na Apple App Store e Google Play Store</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Requisito App Store</th>
+                    <th>Apple App Store</th>
+                    <th>Google Play Store</th>
+                    <th>Ferramentas Desenvolvimento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row-1">
+                    <td class="step-cell"><strong>Registro Conta Desenvolvedor</strong><br><small>Criar contas e pagar taxas</small></td>
+                    <td>
+                        <span class="tool-tag other">✓ Apple Developer Program</span><br>
+                        <small>US$99/ano + CNPJ requerido para entidade Brasil</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">✓ Google Play Console</span><br>
+                        <small>Taxa única US$25 + CNPJ</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Credenciais Conta</span>
+                        <span class="tool-tag confluence">Docs Conta Dev</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-2">
+                    <td class="step-cell"><strong>Framework Desenvolvimento App</strong><br><small>Escolher seu tech stack</small></td>
+                    <td colspan="2">
+                        <span class="tool-tag other">✓ React Native</span>
+                        <span class="tool-tag other">Flutter</span>
+                        <span class="tool-tag other">Nativo (Swift/Kotlin)</span>
+                        <span class="tool-tag other">Expo</span>
+                        <span class="tool-tag other">Ionic</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag figma">Kit Design Mobile</span>
+                        <span class="tool-tag ai">Cursor/Lovable</span>
+                        <span class="tool-tag other">VS Code</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-3">
+                    <td class="step-cell"><strong>Requisitos Específicos Dados Saúde</strong><br><small>⚠️ CRÍTICO para apps saúde</small></td>
+                    <td>
+                        <span class="tool-tag other">✓ Conformidade HealthKit</span><br>
+                        <small>Diretrizes Revisão App Store 5.1.1 (Saúde & Médico)</small><br>
+                        <small>Deve cumprir leis locais (LGPD)</small><br>
+                        <small>Dados saúde não podem ser vendidos a terceiros</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">✓ Health Connect API</span><br>
+                        <small>Conformidade Política Apps Médicos</small><br>
+                        <small>Justificativa permissões sensíveis requerida</small><br>
+                        <small>Seção segurança dados obrigatória</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">✓ Checklist Conformidade</span>
+                        <span class="tool-tag confluence">Docs Conformidade</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-4">
+                    <td class="step-cell"><strong>Política Privacidade & Termos</strong><br><small>No app e no site</small></td>
+                    <td>
+                        <span class="tool-tag other">✓ Privacy Manifest Requerido</span><br>
+                        <small>Rótulos Nutrição Privacidade</small><br>
+                        <small>Transparência Rastreamento App (ATT)</small><br>
+                        <small>Link Política Privacidade requerido</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">✓ Formulário Segurança Dados</span><br>
+                        <small>Divulgação detalhada coleta dados</small><br>
+                        <small>URL Política Privacidade requerida</small><br>
+                        <small>Declaração conformidade LGPD</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Base Páginas Legais</span>
+                        <span class="tool-tag other">iubenda</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-5">
+                    <td class="step-cell"><strong>Otimização App Store (ASO)</strong><br><small>Listagem, capturas tela, descrições</small></td>
+                    <td>
+                        <span class="tool-tag figma">✓ Capturas Tela iOS</span><br>
+                        <small>6.7", 6.5", 5.5" requeridas</small><br>
+                        <small>Vídeos Preview App (opcional)</small><br>
+                        <small>Localização português</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag figma">✓ Capturas Tela Android</span><br>
+                        <small>Capturas tela Phone & Tablet</small><br>
+                        <small>Gráfico destaque (1024x500)</small><br>
+                        <small>Vídeo promocional (opcional)</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag figma">Assets App Store</span>
+                        <span class="tool-tag other">✓ AppLaunchpad</span>
+                        <span class="tool-tag other">Screenshot Studio</span>
+                        <span class="tool-tag ai">ChatGPT (descrições)</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-6">
+                    <td class="step-cell"><strong>Testes & Qualidade</strong><br><small>Testes beta antes lançamento público</small></td>
+                    <td>
+                        <span class="tool-tag other">✓ TestFlight</span><br>
+                        <small>Testes Interno & Externo</small><br>
+                        <small>Até 10.000 testadores</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">✓ Trilha Teste Interno</span>
+                        <span class="tool-tag other">Teste Fechado</span>
+                        <span class="tool-tag other">Teste Aberto</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Log Feedback Testes</span>
+                        <span class="tool-tag jira">Rastreamento Bugs</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-7">
+                    <td class="step-cell"><strong>Classificação & Conteúdo</strong><br><small>Classificações etárias e avisos conteúdo</small></td>
+                    <td>
+                        <span class="tool-tag other">Classificação Etária Apple</span><br>
+                        <small>Completar questionário</small><br>
+                        <small>Categoria Saúde/Médico</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">✓ Classificação IARC</span><br>
+                        <small>Classificação etária internacional</small><br>
+                        <small>Questionário conteúdo</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Documentação Classificação</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-8">
+                    <td class="step-cell"><strong>Compras In-App & Pagamentos</strong><br><small>Se monetizar via assinaturas</small></td>
+                    <td>
+                        <span class="tool-tag other">✓ StoreKit/In-App Purchase</span><br>
+                        <small>Apple leva 30% (15% após ano 1)</small><br>
+                        <small>Deve usar sistema pagamento Apple</small><br>
+                        <small>Conformidade fiscal Brasil (NF-e)</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">✓ Google Play Billing</span><br>
+                        <small>Google leva 30% (15% após ano 1)</small><br>
+                        <small>Deve usar sistema pagamento Google</small><br>
+                        <small>Conformidade fiscal Brasil (NF-e)</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">RevenueCat</span>
+                        <span class="tool-tag other">Adapty</span>
+                        <span class="tool-tag notion">Gestão Assinaturas</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-9">
+                    <td class="step-cell"><strong>Assinatura App & Build</strong><br><small>Certificados assinatura código</small></td>
+                    <td>
+                        <span class="tool-tag other">✓ Certificados Apple</span><br>
+                        <small>Certificado Distribuição</small><br>
+                        <small>Perfis Provisionamento</small><br>
+                        <small>Registro App ID</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">✓ Chave Assinatura App</span><br>
+                        <small>Chave upload & chave assinatura app</small><br>
+                        <span class="tool-tag other">Google Play App Signing</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">Xcode (iOS)</span>
+                        <span class="tool-tag other">Android Studio</span>
+                        <span class="tool-tag other">Fastlane (automação)</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-10">
+                    <td class="step-cell"><strong>Processo Revisão & Aprovação</strong><br><small>Submeter e aguardar aprovação</small></td>
+                    <td>
+                        <span class="tool-tag other">App Store Connect</span><br>
+                        <small>Tempo revisão: 24-48 horas tipicamente</small><br>
+                        <small>Apps saúde podem demorar mais</small><br>
+                        <small>Alta taxa rejeição para apps saúde</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">Google Play Console</span><br>
+                        <small>Tempo revisão: Poucas horas a 7 dias</small><br>
+                        <small>Apps médicos recebem escrutínio extra</small><br>
+                        <small>Pode requerer verificação adicional</small>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">✓ Checklist Lançamento</span>
+                        <span class="tool-tag confluence">Notas Submissão</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert-box alert-warning">
+            <h3>⚠️ Requisitos App Saúde Específicos Stores:</h3>
+            <p><strong>Apple App Store - Apps Saúde (ALTO risco rejeição):</strong></p>
+            <ul>
+                <li>✓ Deve declarar claramente que NÃO é ferramenta diagnóstico médico (se aplicável)</li>
+                <li>✓ Política Privacidade deve detalhar explicitamente manipulação dados saúde</li>
+                <li>✓ Não pode compartilhar dados saúde com terceiros sem consentimento explícito</li>
+                <li>✓ Deve cumprir regulamentações locais (LGPD no Brasil)</li>
+                <li>✓ Se fornecendo terapia, deve declarar claramente credenciais profissional e limitações</li>
+                <li>✓ Informação contato emergência e recursos crise DEVEM ser facilmente acessíveis</li>
+                <li>✓ Não pode usar dados saúde para publicidade ou marketing</li>
+                <li>✓ Diretriz 5.1.1 (iv): Apps facilitando suporte crise devem trabalhar com organizações crise</li>
+            </ul>
+
+            <p><strong>Google Play Store - Apps Médicos:</strong></p>
+            <ul>
+                <li>✓ Apps fornecendo serviços saúde mental devem ser transparentes sobre qualificações profissional</li>
+                <li>✓ Deve ter disclaimers proeminentes sobre situações emergência</li>
+                <li>✓ Seção Segurança Dados deve detalhar toda coleta dados saúde</li>
+                <li>✓ Pode requerer verificação credenciais desenvolvedor para alegações médicas</li>
+                <li>✓ Solicitações permissões sensíveis precisam justificativa clara</li>
+            </ul>
+
+            <p><strong>O que preparar para Revisão App:</strong></p>
+            <ul>
+                <li>Credenciais conta demo para revisores (com dados paciente exemplo)</li>
+                <li>Vídeo demonstrando fluxo app e funcionalidades</li>
+                <li>Documentação provando conformidade LGPD</li>
+                <li>Prova conformidade CFP (se aplicável)</li>
+                <li>Documentação protocolo emergência</li>
+                <li>Documentação processo verificação credenciais terapeuta</li>
+            </ul>
+        </div>
+
+        <div class="alert-box alert-blue">
+            <h3>📱 Melhores Práticas Desenvolvimento Mobile:</h3>
+            <ul>
+                <li><strong>Comece com uma plataforma:</strong> Considere lançar em uma store primeiro (Android tipicamente tem revisão mais rápida), depois expanda</li>
+                <li><strong>Framework cross-platform:</strong> React Native ou Flutter permite construir para iOS e Android simultaneamente</li>
+                <li><strong>Testes beta cruciais:</strong> Use TestFlight e Google Play Testes Internos extensivamente antes lançamento público</li>
+                <li><strong>Otimização App Store (ASO):</strong> Capturas tela e descrições bem elaboradas impactam significativamente downloads</li>
+                <li><strong>Localização:</strong> Forneça versões português de todo texto, capturas tela e descrições para mercado brasileiro</li>
+                <li><strong>Prepare-se para rejeição:</strong> Apps saúde têm altas taxas rejeição. Orce tempo para múltiplos ciclos revisão</li>
+                <li><strong>Mantenha atualizações regulares:</strong> Ambas stores favorecem apps ativamente mantidos em rankings</li>
+                <li><strong>Monitore avaliações de perto:</strong> Responda avaliações usuários profissionalmente e rapidamente</li>
+                <li><strong>Analytics:</strong> Integre Firebase Analytics (gratuito) ou Mixpanel para rastrear comportamento usuário</li>
+            </ul>
+        </div>
+
+        <div class="alert-box alert-pink">
+            <h3>⏱️ Considerações Timeline App Mobile:</h3>
+            <p><strong>Adicione estes ao seu cronograma desenvolvimento:</strong></p>
+            <ul>
+                <li><strong>Mês 1-2:</strong> Registre contas desenvolvedor (ambas stores) cedo - verificação pode demorar</li>
+                <li><strong>Fase Design:</strong> Design para diretrizes iOS e Android (são diferentes!)</li>
+                <li><strong>Fase Desenvolvimento:</strong> Construa app mobile junto ou após versão web</li>
+                <li><strong>2-3 semanas antes lançamento:</strong> Testes beta com TestFlight e Google Play Testing</li>
+                <li><strong>1 semana antes lançamento desejado:</strong> Submeta para revisão (considere potenciais rejeições)</li>
+                <li><strong>Orce 2-3 ciclos rejeição:</strong> Apps saúde frequentemente precisam revisões - isto é normal</li>
+                <li><strong>Planeje 2-4 semanas total:</strong> Da primeira submissão até aprovado e ao vivo</li>
+            </ul>
+            
+            <p style="margin-top: 15px; font-weight: bold;">Desenvolvimento app mobile tipicamente adiciona 2-4 meses ao seu cronograma geral, dependendo da complexidade.</p>
+        </div>
+
+        <div class="section-header-alt">
+            <h2>🚀 Trilha Desenvolvimento Produto</h2>
+            <p style="font-size: 16px; margin-bottom: 0;">Ferramentas para cada etapa do ciclo de desenvolvimento</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Etapa de Desenvolvimento</th>
+                    <th>Figma/FigJam</th>
+                    <th>Ferramentas de IA</th>
+                    <th>Jira & Confluence</th>
+                    <th>Notion</th>
+                    <th>Outras Ferramentas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row-1">
+                    <td class="step-cell">1. Ideação & Definição do Problema</td>
+                    <td>
+                        <span class="tool-tag figjam">✓ Template Brainstorm FigJam</span>
+                        <span class="tool-tag figjam">Widget Mapa Mental</span>
+                        <span class="tool-tag figjam">Notas Adesivas</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag ai">ChatGPT/Claude</span>
+                        <span class="tool-tag ai">Miro AI</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag confluence">Quadro Branco Confluence</span>
+                        <span class="tool-tag confluence">Template Brainstorming</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Wiki Notion</span>
+                        <span class="tool-tag notion">Base de Ideias</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">Miro</span>
+                        <span class="tool-tag other">Mural</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-2">
+                    <td class="step-cell">2. Validação do Conceito</td>
+                    <td>
+                        <span class="tool-tag figjam">✓ Template Pesquisa de Usuário</span>
+                        <span class="tool-tag figjam">Diagrama de Afinidade</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag ai">Perplexity (pesquisa)</span>
+                        <span class="tool-tag ai">ChatGPT (questionários)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag confluence">Página Notas de Pesquisa</span>
+                        <span class="tool-tag confluence">Notas de Reunião</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Base de Entrevistas</span>
+                        <span class="tool-tag notion">Repositório de Pesquisa</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">Typeform</span>
+                        <span class="tool-tag other">Google Forms</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-3">
+                    <td class="step-cell">3. Definir Requisitos</td>
+                    <td>
+                        <span class="tool-tag figjam">Template Roadmap Produto</span>
+                        <span class="tool-tag figjam">Matriz Priorização</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag ai">ChatGPT (histórias usuário)</span>
+                        <span class="tool-tag ai">Claude (doc requisitos)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag jira">Criação de Epic</span>
+                        <span class="tool-tag confluence">Doc Requisitos</span>
+                        <span class="tool-tag confluence">Template Spec Produto</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">✓ Roadmap Produto</span>
+                        <span class="tool-tag notion">Base de Funcionalidades</span>
+                        <span class="tool-tag notion">Template PRD</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">ProductBoard</span>
+                        <span class="tool-tag other">Aha!</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-4">
+                    <td class="step-cell">4. Design & Protótipo</td>
+                    <td>
+                        <span class="tool-tag figma">Kit Wireframe</span>
+                        <span class="tool-tag figma">✓ Modo Protótipo</span>
+                        <span class="tool-tag figma">Design System</span>
+                        <span class="tool-tag figjam">Diagrama Fluxo Usuário</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag ai">Galileo AI (design)</span>
+                        <span class="tool-tag ai">Uizard</span>
+                        <span class="tool-tag ai">v0.dev</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag confluence">Página Specs Design</span>
+                        <span class="tool-tag confluence">Revisão Design</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Base Revisão Design</span>
+                        <span class="tool-tag notion">Log Feedback</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">Adobe XD</span>
+                        <span class="tool-tag other">Sketch</span>
+                        <span class="tool-tag other">Framer</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-5">
+                    <td class="step-cell">5. Planejamento Técnico</td>
+                    <td>
+                        <span class="tool-tag figjam">Diagrama Arquitetura Sistema</span>
+                        <span class="tool-tag figjam">Canvas Tech Stack</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag ai">GitHub Copilot</span>
+                        <span class="tool-tag ai">Cursor</span>
+                        <span class="tool-tag ai">Lovable</span>
+                        <span class="tool-tag ai">Tabnine</span>
+                        <span class="tool-tag ai">Claude (revisão código)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag jira">✓ Quadro Sprint</span>
+                        <span class="tool-tag jira">Gestão Backlog</span>
+                        <span class="tool-tag jira">Rastreamento Histórias</span>
+                        <span class="tool-tag confluence">Documentação API</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Wiki Dev</span>
+                        <span class="tool-tag notion">Snippets Código</span>
+                        <span class="tool-tag notion">Quadro Tarefas</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">GitHub/GitLab</span>
+                        <span class="tool-tag other">VS Code</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-7">
+                    <td class="step-cell">7. Testes & QA</td>
+                    <td>
+                        <span class="tool-tag figjam">Quadro Rastreamento Bugs</span>
+                        <span class="tool-tag figma">Modo Anotação</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag ai">Testim.io</span>
+                        <span class="tool-tag ai">Applitools</span>
+                        <span class="tool-tag ai">ChatGPT (casos de teste)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag jira">✓ Rastreamento Bugs</span>
+                        <span class="tool-tag jira">Casos de Teste</span>
+                        <span class="tool-tag confluence">Plano Teste QA</span>
+                        <span class="tool-tag confluence">Relatórios Bugs</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Base Casos de Teste</span>
+                        <span class="tool-tag notion">Log Bugs</span>
+                        <span class="tool-tag notion">Checklist QA</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">TestRail</span>
+                        <span class="tool-tag other">Selenium</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-8">
+                    <td class="step-cell">8. Preparação Lançamento</td>
+                    <td>
+                        <span class="tool-tag figjam">Plano Go-to-Market</span>
+                        <span class="tool-tag figjam">Checklist Lançamento</span>
+                        <span class="tool-tag figma">Materiais Marketing</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag ai">Jasper AI (copywriting)</span>
+                        <span class="tool-tag ai">Copy.ai</span>
+                        <span class="tool-tag ai">ChatGPT (conteúdo)</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag jira">Tarefas Lançamento</span>
+                        <span class="tool-tag confluence">Doc Plano Lançamento</span>
+                        <span class="tool-tag confluence">Documentação Usuário</span>
+                        <span class="tool-tag confluence">Base Conhecimento</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">✓ Checklist Lançamento</span>
+                        <span class="tool-tag notion">Hub Marketing</span>
+                        <span class="tool-tag notion">Calendário Conteúdo</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">Mailchimp</span>
+                        <span class="tool-tag other">HubSpot</span>
+                        <span class="tool-tag other">Canva</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-9">
+                    <td class="step-cell">9. Lançamento</td>
+                    <td>
+                        <span class="tool-tag figjam">Dashboard Lançamento</span>
+                        <span class="tool-tag figjam">Coleta Feedback</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag ai">Intercom (chatbot)</span>
+                        <span class="tool-tag ai">Drift AI</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag jira">✓ Rastreamento Problemas</span>
+                        <span class="tool-tag jira">Gestão Incidentes</span>
+                        <span class="tool-tag confluence">Retrospectiva Lançamento</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">Log Lançamento</span>
+                        <span class="tool-tag notion">Feedback Clientes</span>
+                        <span class="tool-tag notion">Tickets Suporte</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">Google Analytics</span>
+                        <span class="tool-tag other">Mixpanel</span>
+                    </td>
+                </tr>
+                
+                <tr class="row-10">
+                    <td class="step-cell">10. Pós-Lançamento</td>
+                    <td>
+                        <span class="tool-tag figjam">Quadro Retrospectiva</span>
+                        <span class="tool-tag figjam">Atualizações Roadmap</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag ai">Amplitude (analytics AI)</span>
+                        <span class="tool-tag ai">ChatGPT (insights)</span>
+                        <span class="tool-tag ai">Hotjar AI</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag jira">Planejamento Iteração</span>
+                        <span class="tool-tag jira">Solicitações Features</span>
+                        <span class="tool-tag confluence">Doc Post-Mortem</span>
+                        <span class="tool-tag confluence">Lições Aprendidas</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag notion">✓ Dashboard Métricas</span>
+                        <span class="tool-tag notion">Ideias Iteração</span>
+                        <span class="tool-tag notion">Rastreamento Sucesso</span>
+                    </td>
+                    <td>
+                        <span class="tool-tag other">Amplitude</span>
+                        <span class="tool-tag other">Hotjar</span>
+                        <span class="tool-tag other">UserTesting</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="alert-box alert-info">
+            <h3>💡 Dicas Profissionais:</h3>
+            <ul>
+                <li><strong>Figma vs FigJam:</strong> Use Figma para design e protótipos reais, FigJam para brainstorming colaborativo e planejamento.</li>
+                <li><strong>Jira + Confluence:</strong> Ótima combinação - Jira para rastreamento de tarefas, Confluence para documentação. Integram perfeitamente.</li>
+                <li><strong>Notion:</strong> Workspace tudo-em-um perfeito. Pode substituir ou complementar Confluence com mais flexibilidade.</li>
+                <li><strong>Ferramentas IA:</strong> Use para acelerar tarefas repetitivas, gerar ideias e criar primeiros rascunhos - mas sempre revise.</li>
+                <li><strong>Comece Simples:</strong> Não tente usar todas as ferramentas de uma vez. Escolha 2-3 principais e expanda conforme se familiariza.</li>
+            </ul>
+        </div>
+
+        <div class="section-header-green">
+            <h2>💰 Orçamento Estimado (Valores em Reais)</h2>
+            <p style="font-size: 16px; margin-bottom: 0;">Custos aproximados para lançar app de saúde feminina (rastreamento ciclo menstrual + bem-estar)</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Item</th>
+                    <th>Custo Inicial</th>
+                    <th>Custo Mensal/Anual</th>
+                    <th>Notas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="row-1">
+                    <td class="step-cell" rowspan="5"><strong>Legal & Contabilidade</strong></td>
+                    <td><strong>Registro Empresa (CNPJ + Contrato Social)</strong></td>
+                    <td>R$ 1.500 - R$ 3.000</td>
+                    <td>-</td>
+                    <td><small>Via Contabilizei ou contador local. Inclui registro Junta Comercial</small></td>
+                </tr>
+                <tr class="row-1">
+                    <td><strong>Contador/Contabilidade</strong></td>
+                    <td>-</td>
+                    <td>R$ 200 - R$ 500/mês</td>
+                    <td><small>Contabilizei, Qipu ou contador tradicional. ESSENCIAL para health tech</small></td>
+                </tr>
+                <tr class="row-1">
+                    <td><strong>Advogado Especializado Tech Saúde</strong></td>
+                    <td>R$ 5.000 - R$ 15.000</td>
+                    <td>R$ 2.000 - R$ 5.000/mês</td>
+                    <td><small>Para LGPD, CFP compliance, contratos. NÃO-NEGOCIÁVEL para dados saúde</small></td>
+                </tr>
+                <tr class="row-1">
+                    <td><strong>DPO (Encarregado Dados)</strong></td>
+                    <td>-</td>
+                    <td>R$ 1.500 - R$ 4.000/mês</td>
+                    <td><small>Pode ser consultor externo. OBRIGATÓRIO para dados sensíveis LGPD</small></td>
+                </tr>
+                <tr class="row-1">
+                    <td><strong>Registro Marca INPI</strong></td>
+                    <td>R$ 355 - R$ 745</td>
+                    <td>-</td>
+                    <td><small>Taxa oficial INPI. Pode adicionar R$ 1.000-2.000 se usar despachante</small></td>
+                </tr>
+                
+                <tr class="row-2">
+                    <td class="step-cell" rowspan="3"><strong>Seguros</strong></td>
+                    <td><strong>Seguro Empresarial</strong></td>
+                    <td>-</td>
+                    <td>R$ 150 - R$ 500/mês</td>
+                    <td><small>Porto Seguro, Bradesco. Responsabilidade civil básica</small></td>
+                </tr>
+                <tr class="row-2">
+                    <td><strong>Seguro Cyber (Dados)</strong></td>
+                    <td>-</td>
+                    <td>R$ 300 - R$ 800/mês</td>
+                    <td><small>ALTAMENTE recomendado para health tech. Cobre violações dados</small></td>
+                </tr>
+                <tr class="row-2">
+                    <td><strong>E&O (Erros & Omissões)</strong></td>
+                    <td>-</td>
+                    <td>R$ 200 - R$ 600/mês</td>
+                    <td><small>Proteção contra alegações negligência profissional</small></td>
+                </tr>
+                
+                <tr class="row-3">
+                    <td class="step-cell" rowspan="7"><strong>Ferramentas Desenvolvimento</strong></td>
+                    <td><strong>Lovable</strong></td>
+                    <td>-</td>
+                    <td>US$ 0 - US$ 50/mês<br>(R$ 0 - R$ 280/mês)</td>
+                    <td><small>Plano gratuito disponível. Pro: US$ 20-50/mês por dev</small></td>
+                </tr>
+                <tr class="row-3">
+                    <td><strong>Supabase</strong></td>
+                    <td>-</td>
+                    <td>US$ 0 - US$ 25/mês<br>(R$ 0 - R$ 140/mês)</td>
+                    <td><small>Gratuito até 500MB. Pro: US$ 25/mês. ATENÇÃO: dados saúde precisam tier superior</small></td>
+                </tr>
+                <tr class="row-3">
+                    <td><strong>AWS (Health-compliant)</strong></td>
+                    <td>-</td>
+                    <td>R$ 200 - R$ 1.500/mês</td>
+                    <td><small>EC2, RDS, S3 encrypted, CloudWatch. Varia por uso. Budget R$ 500/mês inicialmente</small></td>
+                </tr>
+                <tr class="row-3">
+                    <td><strong>Jira & Confluence</strong></td>
+                    <td>-</td>
+                    <td>GRATUITO até 10 usuários</td>
+                    <td><small>Plano Free permanente! Standard: US$ 16/usuário/mês se crescer</small></td>
+                </tr>
+                <tr class="row-3">
+                    <td><strong>Figma & FigJam</strong></td>
+                    <td>-</td>
+                    <td>GRATUITO (Starter)<br>ou US$ 15/usuário/mês<br>(R$ 84/usuário/mês)</td>
+                    <td><small>Starter gratuito OK para começar. Professional: US$ 15/usuário</small></td>
+                </tr>
+                <tr class="row-3">
+                    <td><strong>Notion</strong></td>
+                    <td>-</td>
+                    <td>GRATUITO (Plus: US$ 10/usuário/mês)<br>(R$ 56/usuário/mês)</td>
+                    <td><small>Plus recomendado para colaboração. Gratuito funciona para começar</small></td>
+                </tr>
+                <tr class="row-3">
+                    <td><strong>Canva</strong></td>
+                    <td>-</td>
+                    <td>GRATUITO (Pro: R$ 54,90/mês para equipe)</td>
+                    <td><small>Gratuito suficiente. Pro adiciona templates e recursos avançados</small></td>
+                </tr>
+                
+                <tr class="row-4">
+                    <td class="step-cell" rowspan="4"><strong>Infraestrutura Segurança (Health-Required)</strong></td>
+                    <td><strong>SSL Certificates</strong></td>
+                    <td>-</td>
+                    <td>R$ 0 - R$ 500/ano</td>
+                    <td><small>Let's Encrypt gratuito OK. Wildcard: ~R$ 300-500/ano</small></td>
+                </tr>
+                <tr class="row-4">
+                    <td><strong>Backup & Disaster Recovery</strong></td>
+                    <td>-</td>
+                    <td>R$ 100 - R$ 400/mês</td>
+                    <td><small>AWS Backup ou similar. OBRIGATÓRIO para dados saúde</small></td>
+                </tr>
+                <tr class="row-4">
+                    <td><strong>Monitoring & Logs (SIEM)</strong></td>
+                    <td>-</td>
+                    <td>R$ 150 - R$ 600/mês</td>
+                    <td><small>DataDog, New Relic ou AWS CloudWatch. LGPD requer audit logs</small></td>
+                </tr>
+                <tr class="row-4">
+                    <td><strong>Auditoria Segurança (Penetration Test)</strong></td>
+                    <td>R$ 3.000 - R$ 10.000</td>
+                    <td>Trimestral/Anual</td>
+                    <td><small>OBRIGATÓRIO antes lançamento. Repetir trimestralmente recomendado</small></td>
+                </tr>
+                
+                <tr class="row-5">
+                    <td class="step-cell" rowspan="3"><strong>Mobile App Stores</strong></td>
+                    <td><strong>Apple Developer Account</strong></td>
+                    <td>US$ 99/ano (R$ 555/ano)</td>
+                    <td>R$ 555/ano</td>
+                    <td><small>Renovação anual obrigatória</small></td>
+                </tr>
+                <tr class="row-5">
+                    <td><strong>Google Play Developer Account</strong></td>
+                    <td>US$ 25 uma vez (R$ 140)</td>
+                    <td>-</td>
+                    <td><small>Pagamento único, vitalício</small></td>
+                </tr>
+                <tr class="row-5">
+                    <td><strong>App Store Assets (Design)</strong></td>
+                    <td>R$ 500 - R$ 2.000</td>
+                    <td>-</td>
+                    <td><small>Screenshots, ícones, materiais marketing. Pode fazer internamente com Figma/Canva</small></td>
+                </tr>
+                
+                <tr class="row-6">
+                    <td class="step-cell" rowspan="3"><strong>Conformidade & Documentação</strong></td>
+                    <td><strong>Política Privacidade & Termos (LGPD-compliant)</strong></td>
+                    <td>R$ 1.500 - R$ 5.000</td>
+                    <td>-</td>
+                    <td><small>Via iubenda (R$ 200/ano) + revisão advogado. Ou advogado criar do zero</small></td>
+                </tr>
+                <tr class="row-6">
+                    <td><strong>DPIA/RIPD (Data Impact Assessment)</strong></td>
+                    <td>R$ 2.000 - R$ 8.000</td>
+                    <td>-</td>
+                    <td><small>Consultor DPO ou advogado. OBRIGATÓRIO LGPD dados sensíveis</small></td>
+                </tr>
+                <tr class="row-6">
+                    <td><strong>Plano Resposta Incidentes</strong></td>
+                    <td>R$ 1.500 - R$ 4.000</td>
+                    <td>-</td>
+                    <td><small>Documentação + treinamento equipe</small></td>
+                </tr>
+                
+                <tr class="row-7">
+                    <td class="step-cell" rowspan="2"><strong>Pagamentos & Faturamento</strong></td>
+                    <td><strong>Gateway Pagamento (Mercado Pago/PagSeguro)</strong></td>
+                    <td>R$ 0 setup</td>
+                    <td>~4% - 5% por transação</td>
+                    <td><small>Sem taxa fixa mensal. Apenas % sobre vendas</small></td>
+                </tr>
+                <tr class="row-7">
+                    <td><strong>Sistema Emissão NFe</strong></td>
+                    <td>-</td>
+                    <td>Incluído em contabilidade</td>
+                    <td><small>Conta Azul, Omie incluem NFe. Ou via contador</small></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert-box alert-success">
+            <h3>📊 Resumo Orçamento - Cenário Mínimo Viável (MVP)</h3>
+            <p style="font-size: 18px; font-weight: bold;">CUSTOS INICIAIS (Setup):</p>
+            <ul style="font-size: 16px;">
+                <li><strong>Legal obrigatório:</strong> R$ 8.000 - R$ 25.000 (registro empresa, advogado inicial, DPO setup, DPIA)</li>
+                <li><strong>Seguros (primeiro pagamento):</strong> R$ 650 - R$ 1.900</li>
+                <li><strong>Mobile stores:</strong> R$ 695</li>
+                <li><strong>Auditoria segurança pré-lançamento:</strong> R$ 3.000 - R$ 10.000</li>
+                <li><strong>Design/assets:</strong> R$ 500 - R$ 2.000</li>
+            </ul>
+            <p style="font-size: 20px; font-weight: bold; color: #1b5e20; margin-top: 15px;">
+                💰 TOTAL INICIAL: R$ 12.845 - R$ 39.595
+            </p>
+
+            <p style="font-size: 18px; font-weight: bold; margin-top: 30px;">CUSTOS MENSAIS RECORRENTES:</p>
+            <ul style="font-size: 16px;">
+                <li><strong>Legal essencial:</strong> R$ 3.700 - R$ 9.500/mês (contador + advogado + DPO)</li>
+                <li><strong>Seguros:</strong> R$ 650 - R$ 1.900/mês</li>
+                <li><strong>Infraestrutura tech:</strong> R$ 450 - R$ 2.540/mês (AWS + Supabase + monitoring + backup)</li>
+                <li><strong>Ferramentas dev (usando planos gratuitos):</strong> R$ 0 - R$ 420/mês (Lovable Pro + Notion Plus + Figma Pro opcional)</li>
+            </ul>
+            <p style="font-size: 20px; font-weight: bold; color: #1b5e20; margin-top: 15px;">
+                💰 TOTAL MENSAL: R$ 5.000 - R$ 15.560/mês
+            </p>
+
+            <p style="font-size: 18px; font-weight: bold; margin-top: 30px;">CUSTO TOTAL ANO 1 (Estimativa):</p>
+            <ul style="font-size: 16px;">
+                <li>Setup inicial: R$ 12.845 - R$ 39.595</li>
+                <li>Custos mensais x 12: R$ 60.000 - R$ 186.720</li>
+                <li>Auditorias adicionais (anual): R$ 3.000 - R$ 10.000</li>
+            </ul>
+            <p style="font-size: 22px; font-weight: bold; color: #1b5e20; margin-top: 15px; padding: 15px; background: white; border-radius: 5px;">
+                💰 INVESTIMENTO TOTAL ANO 1: R$ 75.845 - R$ 236.315
+            </p>
+        </div>
+
+        <div class="alert-box alert-warning">
+            <h3>⚠️ Notas Importantes sobre Orçamento:</h3>
+            <ul>
+                <li><strong>Estes são custos ANTES de desenvolver o produto:</strong> Não inclui salários desenvolvedores, designers, ou equipe</li>
+                <li><strong>Health tech é CARO:</strong> Os custos legais e segurança são altos mas NÃO-NEGOCIÁVEIS. Economizar aqui é ilegal e arriscado</li>
+                <li><strong>Variação grande:</strong> Custos dependem de complexidade, tamanho dados, número usuários. Comece conservador</li>
+                <li><strong>Custos aumentam com escala:</strong> AWS, storage todos aumentam conforme usuários crescem</li>
+                <li><strong>Contingência:</strong> SEMPRE adicione 20-30% buffer para imprevistos</li>
+                <li><strong>Planos gratuitos limitados:</strong> Jira, Figma, Notion gratuitos OK para MVP, mas precisará upgrade conforme cresce</li>
+                <li><strong>Taxa Apple/Google stores:</strong> 30% de todas transações in-app (15% após ano 1). Planeje isso no pricing</li>
+                <li><strong>Cambio USD:</strong> Valores em dólar variam. Calculado a ~R$ 5,60/USD (verifique taxa atual)</li>
+            </ul>
+        </div>
+
+        <div class="alert-box alert-teal">
+            <h3>💡 Dicas para Reduzir Custos (SEM comprometer segurança):</h3>
+            <ul>
+                <li>✓ <strong>Use planos gratuitos inicialmente:</strong> Jira, Confluence, Notion, Figma, Canva todos têm versões gratuitas suficientes para MVP</li>
+                <li>✓ <strong>DPO compartilhado:</strong> Pode contratar DPO que atende múltiplas empresas (mais barato que dedicado)</li>
+                <li>✓ <strong>Advogado por projeto:</strong> Em vez de retainer mensal, pague por demanda após setup inicial</li>
+                <li>✓ <strong>Self-host onde possível:</strong> Supabase self-hosted pode ser mais barato que cloud (mas precisa expertise)</li>
+                <li>✓ <strong>Comece pequeno AWS:</strong> Use t3.micro/small EC2, dimensione apenas quando necessário</li>
+                <li>✓ <strong>Mentoria/Incubadora:</strong> Algumas oferecem créditos AWS, assessoria legal gratuita/desconto</li>
+                <li>✓ <strong>Lançamento faseado:</strong> Beta fechado primeiro = menos custos infraestrutura inicialmente</li>
+                <li>❌ <strong>NUNCA economize em:</strong> Advogado health tech, DPO, auditoria segurança, backups, criptografia, seguros</li>
+            </ul>
+        </div>
+
+        <div class="section-header-alt">
+            <h2>📅 Cronograma Visual - Timeline Desenvolvimento</h2>
+            <p style="font-size: 16px; margin-bottom: 0;">Timeline estimado do início ao lançamento (6-9 meses para MVP)</p>
+        </div>
+
+        <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; min-width: 1200px; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <th style="padding: 15px; text-align: left; color: white; width: 250px; font-size: 14px; border: 1px solid #5568d3;">Atividade</th>
+                            <th style="padding: 10px; text-align: center; color: white; font-size: 12px; min-width: 90px; border: 1px solid #5568d3;">Mês 1</th>
+                            <th style="padding: 10px; text-align: center; color: white; font-size: 12px; min-width: 90px; border: 1px solid #5568d3;">Mês 2</th>
+                            <th style="padding: 10px; text-align: center; color: white; font-size: 12px; min-width: 90px; border: 1px solid #5568d3;">Mês 3</th>
+                            <th style="padding: 10px; text-align: center; color: white; font-size: 12px; min-width: 90px; border: 1px solid #5568d3;">Mês 4</th>
+                            <th style="padding: 10px; text-align: center; color: white; font-size: 12px; min-width: 90px; border: 1px solid #5568d3;">Mês 5</th>
+                            <th style="padding: 10px; text-align: center; color: white; font-size: 12px; min-width: 90px; border: 1px solid #5568d3;">Mês 6</th>
+                            <th style="padding: 10px; text-align: center; color: white; font-size: 12px; min-width: 90px; border: 1px solid #5568d3;">Mês 7</th>
+                            <th style="padding: 10px; text-align: center; color: white; font-size: 12px; min-width: 90px; border: 1px solid #5568d3;">Mês 8</th>
+                            <th style="padding: 10px; text-align: center; color: white; font-size: 12px; min-width: 90px; border: 1px solid #5568d3;">Mês 9</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #fff5f5;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 600;">⚖️ Setup Legal & Contábil</td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 600;">CNPJ + Advogado + DPO</div>
+                            </td>
+                            <td colspan="7" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+                        
+                        <tr style="background: #fffaf0;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 600;">💡 Ideação & Validação</td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 600;">FigJam + Pesquisa</div>
+                            </td>
+                            <td colspan="7" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: #fffff0;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 600;">📝 Definição Requisitos</td>
+                            <td style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%); height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #2d3748; font-size: 11px; font-weight: 600;">PRD + Roadmap</div>
+                            </td>
+                            <td colspan="6" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: #f0fff4;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 600;">🎨 Design & Protótipo</td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #2d3748; font-size: 11px; font-weight: 600;">Figma Design</div>
+                            </td>
+                            <td colspan="5" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: #f0ffff;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 600;">⚙️ Planejamento Técnico</td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: #4299e1; height: 32px; border-radius: 4px;"></div>
+                            </td>
+                            <td colspan="6" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: #f0f9ff;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 600;">💻 Desenvolvimento MVP</td>
+                            <td colspan="3" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td colspan="3" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 35px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 600;">Lovable + Supabase + AWS</div>
+                            </td>
+                            <td colspan="3" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: #f0f9ff;">
+                            <td style="padding: 12px; padding-left: 30px; border: 1px solid #e2e8f0;">🔒 Implementação Segurança</td>
+                            <td colspan="3" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td colspan="3" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: #e53e3e; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: 600;">E2EE + Encryption</div>
+                            </td>
+                            <td colspan="3" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: #faf5ff;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 600;">📄 Docs Legais (TCLE, Políticas)</td>
+                            <td colspan="4" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: #9f7aea; height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 600;">Advogado Revisar</div>
+                            </td>
+                            <td colspan="3" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: #fff5f7;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 600;">🧪 Testes & QA</td>
+                            <td colspan="5" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 600;">Testes Internos</div>
+                            </td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: #fff5f7;">
+                            <td style="padding: 12px; padding-left: 30px; border: 1px solid #e2e8f0;">🛡️ Auditoria Segurança</td>
+                            <td colspan="6" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: #e53e3e; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: 600;">Pen Test</div>
+                            </td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: #fef5e7;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 600;">📱 Desenvolvimento Mobile</td>
+                            <td colspan="4" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td colspan="3" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: linear-gradient(135deg, #f6d365 0%, #fda085 100%); height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 600;">React Native/Flutter</div>
+                            </td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: #f0fdf4;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 600;">🧑‍🤝‍🧑 Beta Testing</td>
+                            <td colspan="6" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: #48bb78; height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: 600;">TestFlight + GP</div>
+                            </td>
+                            <td style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: #f0fdf4;">
+                            <td style="padding: 12px; padding-left: 30px; border: 1px solid #e2e8f0;">📲 Submissão App Stores</td>
+                            <td colspan="7" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: #38a169; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: 600;">Review + Fix</div>
+                            </td>
+                        </tr>
+
+                        <tr style="background: #fffaf0;">
+                            <td style="padding: 12px; border: 1px solid #e2e8f0; font-weight: 600;">🛡️ Seguros & Finalizações</td>
+                            <td colspan="6" style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                            <td colspan="2" style="padding: 5px; border: 1px solid #e2e8f0;">
+                                <div style="background: #ed8936; height: 28px; border-radius: 4px;"></div>
+                            </td>
+                            <td style="padding: 5px; border: 1px solid #e2e8f0;"></td>
+                        </tr>
+
+                        <tr style="background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);">
+                            <td style="padding: 15px; border: 1px solid #38b2ac; font-weight: 700; font-size: 16px;">🚀 LANÇAMENTO</td>
+                            <td colspan="8" style="padding: 5px; border: 1px solid #38b2ac;"></td>
+                            <td style="padding: 5px; border: 1px solid #38b2ac;">
+                                <div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); height: 42px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; font-weight: 700; box-shadow: 0 4px 8px rgba(0,0,0,0.15);">🎉 GO LIVE</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="alert-box alert-info">
+            <h3>📊 Legenda do Cronograma:</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 30px; height: 20px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 3px;"></div>
+                    <span style="color: #4a5568; font-size: 14px;">Atividades Críticas Legais</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 30px; height: 20px; background: #e53e3e; border-radius: 3px;"></div>
+                    <span style="color: #4a5568; font-size: 14px;">Segurança (NÃO-NEGOCIÁVEL)</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 30px; height: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 3px;"></div>
+                    <span style="color: #4a5568; font-size: 14px;">Desenvolvimento Principal</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 30px; height: 20px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); border-radius: 3px;"></div>
+                    <span style="color: #4a5568; font-size: 14px;">Pesquisa & Planejamento</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert-box alert-warning">
+            <h3>⚠️ Notas Importantes sobre Timeline:</h3>
+            <ul>
+                <li><strong>6-9 meses é otimista:</strong> Apps health tech frequentemente levam 9-12 meses devido revisões compliance</li>
+                <li><strong>Atividades paralelas:</strong> Muitas tarefas acontecem simultaneamente (legal + desenvolvimento)</li>
+                <li><strong>Buffer recomendado:</strong> Adicione 2-3 meses extras para atrasos inevitáveis (rejeições app store, compliance issues)</li>
+                <li><strong>Legal PRIMEIRO:</strong> Não comece desenvolvimento antes setup legal básico (CNPJ, advogado, DPO)</li>
+                <li><strong>Auditoria segurança:</strong> NÃO pode ser pulada ou apressada. Reserve 2-4 semanas mínimo</li>
+                <li><strong>App stores imprevisível:</strong> Pode levar 1-6 semanas entre submissão e aprovação final (múltiplas rodadas)</li>
+                <li><strong>Beta testing essencial:</strong> Não pule - economiza tempo identificando bugs antes lançamento público</li>
+            </ul>
+        </div>
+
+        <div class="alert-box alert-info">
+            <h3>💡 Dicas Finais:</h3>
+            <ul>
+                <li><strong>Documentação é Chave:</strong> Mantenha tudo documentado desde o início - facilita auditorias e conformidade.</li>
+                <li><strong>Segurança Primeiro:</strong> Para dados saúde, segurança não é opcional. Invista em infraestrutura adequada desde dia 1.</li>
+                <li><strong>Consultoria Jurídica:</strong> Não economize em advogados especializados - o custo de não conformidade é muito maior.</li>
+                <li><strong>Timeline Realista:</strong> Adicione 30-50% de tempo extra para imprevistos, especialmente aprovações e conformidade.</li>
+                <li><strong>Comunicação Parceiros:</strong> Use as ferramentas colaborativas (FigJam, Notion) para manter todos alinhados.</li>
+                <li><strong>Feedback Contínuo:</strong> Teste com usuários reais o mais cedo possível - ajustes são mais baratos cedo.</li>
+                <li><strong>Conformidade Contínua:</strong> Conformidade LGPD não é "feito uma vez" - requer manutenção constante.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
